@@ -1,0 +1,127 @@
+#pbamContainer {
+}
+
+.pbam {
+  width: 100%;
+  border-radius: 5px;
+  margin: 0 20px 15px 20px;
+
+  font-size: 1rem;
+  -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+  &.pbam--error {
+    background-image: none;
+    background-color: rgb(180, 0, 0);
+    color: rgb(255, 255, 255);
+    > .pbam__wrap {
+      > .pbam__wrap__close {
+        color: rgb(255, 255, 255);
+      }
+    }
+    > .pbam__time-bar {
+      background: rgb(101, 0, 0);
+    }
+  }
+  &.pbam--info {
+    background-image: none;
+    background-color: rgb(0, 153, 255);
+    color: rgb(255, 255, 255);
+    > .pbam__wrap {
+      > .pbam__wrap__close {
+        color: rgb(255, 255, 255);
+      }
+    }
+    > .pbam__time-bar {
+      background: rgb(0, 108, 181);
+    }
+  }
+  &.pbam--success {
+    background-image: none;
+    background-color: rgba(72, 181, 0);
+    color: rgb(255, 255, 255);
+    > .pbam__wrap {
+      > .pbam__wrap__close {
+        color: rgba(255, 255, 255);
+      }
+    }
+    > .pbam__time-bar {
+      background: rgb(48, 119, 0);
+    }
+  }
+  &.pbam--warning {
+    background-image: none;
+    background-color: rgb(212, 155, 30);
+    color: rgb(255, 255, 255);
+    > .pbam__wrap {
+      > .pbam__wrap__close {
+        color: rgb(255, 255, 255);
+      }
+    }
+    > .pbam__time-bar {
+      background: rgb(163, 116, 16);
+    }
+  }
+  > .pbam__wrap {
+    padding: 20px 20px 16px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    > .pbam__wrap__first-child {
+      height: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      > .pbam__wrap__first-child__icon {
+        height: 100%;
+        color: rgb(255, 255, 255, 0.6);
+        font-size: 2rem;
+        margin-right: 20px;
+      }
+      > .pbam__wrap__first-child__content {
+        height: 100%;
+        width: 100%;
+        > .pbam__wrap__first-child__content__title {
+          color: rgb(255, 255, 255, 0.6);
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+      }
+    }
+    > .pbam__wrap__close {
+      cursor: pointer;
+      margin-left: 20px;
+      &:hover {
+        filter: brightness(85%);
+      }
+    }
+  }
+  // .alert > .alert-time-bar
+  > .pbam__time-bar {
+    height: 4px;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+// Smartphone
+@media screen and (max-width: 959px) {
+  #pbamContainer {
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+
+  .pbam {
+    width: 100vw;
+    border-radius: 0;
+    margin: 0 0 5px 0;
+    > .pbam__time-bar {
+      border-radius: 0;
+    }
+  }
+}

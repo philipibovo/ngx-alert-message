@@ -1,0 +1,2629 @@
+<header (window:resize)="verifyScreenSize()">
+  <div
+    *ngIf="isSmallScreen"
+    class="action-menu"
+    (click)="menuIsActive = !menuIsActive"
+  >
+    <mat-icon
+      *ngIf="!menuIsActive"
+      aria-hidden="false"
+      aria-label="Show menu"
+      fontIcon="menu"
+    ></mat-icon>
+
+    <mat-icon
+      *ngIf="menuIsActive"
+      aria-hidden="false"
+      aria-label="Close menu"
+      fontIcon="close"
+    ></mat-icon>
+  </div>
+
+  <div class="logo">
+    <img
+      src="../assets/logo/ngx-alert-message-logo-lightblue.svg"
+      alt="ngx-alert-message logo"
+    />
+  </div>
+
+  <div *ngIf="!isSmallScreen" class="options">
+    <div class="pointer" (click)="openGenerateConfig()">
+      Generate your Configurations
+    </div>
+
+    <div class="pointer" (click)="openVersions()">Versions</div>
+  </div>
+
+  <div *ngIf="!isSmallScreen" class="by">
+    <div matTooltip="Developed by Philipi Bovo" matTooltipPosition="below">
+      <a
+        href="https://philipi.bovo.me"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="../assets/logo/logo-philipibovo-lightblue.svg"
+          alt="Logo Philipi Bovo Developer"
+        />
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="isSmallScreen" class="action-menu">&nbsp;</div>
+</header>
+
+<nav [class.active]="menuIsActive">
+  <ul>
+    <li (click)="scroolToElement('section-get-started')">Get Started</li>
+    <li (click)="scroolToElement('section-how-to-use')">How to Use?</li>
+    <li class="label">Configuration</li>
+    <li (click)="scroolToElement('section-configuration-global')" class="nvl-1">
+      Global
+    </li>
+    <li (click)="scroolToElement('section-configuration-unique')" class="nvl-1">
+      Unique Item
+    </li>
+    <li
+      (click)="scroolToElement('section-configuration-default')"
+      class="nvl-1"
+    >
+      Default Values
+    </li>
+    <li (click)="scroolToElement('section-customization')">Customization</li>
+    <li (click)="scroolToElement('section-position')" class="nvl-1">
+      position
+    </li>
+    <li (click)="scroolToElement('section-size')" class="nvl-1">size</li>
+    <li (click)="scroolToElement('section-border')" class="nvl-1">border</li>
+    <li (click)="scroolToElement('section-fixed')" class="nvl-1">fixed</li>
+    <li (click)="scroolToElement('section-message-font-family')" class="nvl-1">
+      messageFontFamily
+    </li>
+    <li (click)="scroolToElement('section-message-font-size')" class="nvl-1">
+      messageFontSize
+    </li>
+    <li (click)="scroolToElement('section-show-close-icon')" class="nvl-1">
+      showCloseIcon
+    </li>
+    <li (click)="scroolToElement('section-timed')" class="nvl-1">timed</li>
+    <li (click)="scroolToElement('section-timed-out')" class="nvl-1">
+      timedOut
+    </li>
+    <li (click)="scroolToElement('section-title-font-family')" class="nvl-1">
+      titleFontFamily
+    </li>
+    <li (click)="scroolToElement('section-title-font-size')" class="nvl-1">
+      titleFontSize
+    </li>
+    <li (click)="scroolToElement('section-alert-error')" class="nvl-1">
+      alertError
+    </li>
+    <li (click)="scroolToElement('section-alert-information')" class="nvl-1">
+      alertInformation
+    </li>
+    <li (click)="scroolToElement('section-alert-success')" class="nvl-1">
+      alertSuccess
+    </li>
+    <li (click)="scroolToElement('section-alert-warning')" class="nvl-1">
+      alertWarning
+    </li>
+    <li (click)="scroolToElement('section-small-screen-config')" class="nvl-1">
+      smallScreenConfig
+    </li>
+  </ul>
+
+  <div class="by" *ngIf="isSmallScreen">
+    <div>Developed by Philipi Bovo</div>
+    <div>
+      <img
+        src="../assets/logo/logo-philipibovo-darkblue.svg"
+        alt="Logo Philipi Bovo Developer"
+      />
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section id="section-about">
+    <h1 class="title">ngx-alert-message</h1>
+
+    <p class="font-size-1_3rem">
+      provides an Angular API for simplified use of alerts on your website,
+      completely customizable and easy to implement.
+    </p>
+
+    <div class="social-icons">
+      <div>
+        <a
+          href="https://github.com/philipibovo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+
+      <div>
+        <a
+          href="https://www.npmjs.com/~philipibovo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fa-brands fa-npm"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-get-started">
+    <h2>Get Started</h2>
+
+    <p>
+      Start by installing the Angular Layout library from:
+      <a
+        href="https://www.npmjs.com/package/@philipibovo/ngx-flexbox"
+        target="_blank"
+      >
+        npm
+      </a>
+    </p>
+
+    <div class="code">
+      <pre>
+        npm install --save {{ codeInHtmlArroba }}philipibovo/ngx-alert-message
+      </pre>
+    </div>
+  </section>
+
+  <section id="section-how-to-use">
+    <h2>How to Use?</h2>
+
+    <p>
+      First, You'll need to import the ngx-alert-message module in your module:
+    </p>
+
+    <p><strong>my-module.module.ts</strong></p>
+    <div class="code margin-bottom-20">
+      <pre>
+        import {{ codeInHtmlKeyOpen }} NgxAlertMessageModule {{
+          codeInHtmlKeyClose
+        }} from '{{ codeInHtmlArroba }}philipibovo/ngx-alert-message';
+        '''
+        {{ codeInHtmlArroba }}NgModule({{ codeInHtmlKeyOpen }}
+          '''
+          imports: [ NgxAlertMessageModule ],
+          '''
+        {{ codeInHtmlKeyClose }});
+      </pre>
+    </div>
+
+    <p>Now, in your component, you must import ngx-alert-message:</p>
+
+    <p><strong>my-component.component.ts</strong></p>
+    <div class="code margin-bottom-20">
+      <pre>
+        import {{ codeInHtmlKeyOpen }} NgxAlertMessage {{
+          codeInHtmlKeyClose
+        }} from '{{ codeInHtmlArroba }}philipibovo/ngx-alert-message';
+      </pre>
+    </div>
+
+    <p>
+      Still in your component. After you have imported ngx-alert-message, you
+      must declare it in your constructor
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        constructor(private _ngxAlertMessage: NgxAlertMessage) {{
+          codeInHtmlKeyOpen
+        }} ... {{ codeInHtmlKeyClose }};
+      </pre>
+    </div>
+
+    <p>
+      Ready! ngx-alert-message is ready to use. To use bas anywhere in your
+      component, call any of the functions: error, information, success or
+      warning.
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select [(ngModel)]="howToUseExampleType">
+            <mat-option value="error">Error</mat-option>
+            <mat-option value="information">Information</mat-option>
+            <mat-option value="success">Success</mat-option>
+            <mat-option value="warning">Warning</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Message</mat-label>
+          <input
+            matInput
+            [(ngModel)]="howToUseExampleMessage"
+            placeholder="Lorem ipsum, dolor..."
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            [(ngModel)]="howToUseExampleTitle"
+            placeholder="Lorem"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert(
+              howToUseExampleType,
+              howToUseExampleMessage,
+              howToUseExampleTitle
+            )
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-configuration-global">
+    <h2>Global Configuration</h2>
+
+    <p>
+      For information about customization
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-customization')"
+      >
+        click here
+      </span>
+      .
+    </p>
+
+    <p>
+      You can set global customization, that is, all alerts will follow the same
+      configuration.
+    </p>
+
+    <p>In your module:</p>
+
+    <p><strong>my-module.module.ts</strong></p>
+    <div class="code margin-bottom-20">
+      <pre>
+        '''
+        {{ codeInHtmlArroba }}NgModule({{ codeInHtmlKeyOpen }}
+          '''
+          providers: [
+            '''
+            {{ codeInHtmlKeyOpen }}
+              provide: 'ngxAlertMessageConfig',
+              useValue: {{ codeInHtmlKeyOpen }} ... {{ codeInHtmlKeyClose }},
+            {{ codeInHtmlKeyClose }},
+            '''
+          ]
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p class="italic">
+      * in "useValue" you must use an object in the format described in the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-customization')"
+        >Customization</span
+      >
+      section
+    </p>
+  </section>
+
+  <section id="section-configuration-unique">
+    <h2>Unique Item Configuration</h2>
+
+    <p>
+      For information about customization
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-customization')"
+      >
+        click here
+      </span>
+      .
+    </p>
+
+    <p>
+      You can also apply customization to a single alert, this customization
+      will take priority over global customization. When calling the function,
+      you must pass a configuration object.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        this._ngxAlertMessage.information('Message', 'Title', {{
+          codeInHtmlKeyOpen
+        }} position: 'bottom', size: 'fill', fixed: true,  {{
+          codeInHtmlKeyClose
+        }})
+      </pre>
+    </div>
+
+    <p class="italic">
+      * in thirt param, you must use an object in the format described in the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-customization')"
+        >Customization</span
+      >
+      section
+    </p>
+  </section>
+
+  <section id="section-configuration-default">
+    <h2>Default Configuration</h2>
+
+    <p>
+      These are the default values, if you do not use any customization, these
+      are the parameters that the alert will have.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          border: {{ codeInHtmlKeyOpen }}
+            radius: "5px",
+            size: "1px",
+            type: "solid",
+          {{ codeInHtmlKeyClose }},
+          fixed: false,
+          messageFontFamily: "Verdana, sans-serif",
+          messageFontSize: "14px",
+          position: "top-right",
+          showCloseIcon: true,
+          size: "300px",
+          timed: true,
+          timedOut: 10000,
+          titleFontFamily: "Verdana, sans-serif",
+          titleFontSize: "14px",
+          alertError: {{ codeInHtmlKeyOpen }}
+            backgroundColor: "#b40000",
+            borderColor: "#b40000",
+            closeIconColor: "#ffffff",
+            messageFontColor: "#ffffff",
+            timeBarColor: "#650000",
+            titleFontColor: "#ffffff",
+          {{ codeInHtmlKeyClose }},
+          alertInformation: {{ codeInHtmlKeyOpen }}
+            backgroundColor: "#0099ff",
+            borderColor: "#0099ff",
+            closeIconColor: "#ffffff",
+            messageFontColor: "#ffffff",
+            timeBarColor: "#006cb5",
+            titleFontColor: "#ffffff",
+          {{ codeInHtmlKeyClose }},
+          alertSuccess: {{ codeInHtmlKeyOpen }}
+            backgroundColor: "#48b500",
+            borderColor: "#48b500",
+            closeIconColor: "#ffffff",
+            messageFontColor: "#ffffff",
+            timeBarColor: "#307700",
+            titleFontColor: "#ffffff",
+          {{ codeInHtmlKeyClose }},
+          alertWarning: {{ codeInHtmlKeyOpen }}
+            backgroundColor: "#d49b1e",
+            borderColor: "#d49b1e",
+            closeIconColor: "#ffffff",
+            messageFontColor: "#ffffff",
+            timeBarColor: "#a37410",
+            titleFontColor: "#ffffff",
+          {{ codeInHtmlKeyClose }},
+          smallScreenConfig: {{ codeInHtmlKeyOpen }}
+            border: {{ codeInHtmlKeyOpen }}
+              size: "1px",
+              radius: "0px",
+              type: "solid",
+            {{ codeInHtmlKeyClose }},
+            messageFontFamily: "Arial, Helvetica, sans-serif",
+            messageFontSize: "14px",
+            position: "bottom",
+            showCloseIcon: true,
+            size: "fill",
+            timed: true,
+            timedOut: 10000,
+            titleFontFamily: "Arial, Helvetica, sans-serif",
+            titleFontSize: "14px",
+            alertError: {{ codeInHtmlKeyOpen }}
+              backgroundColor: "#b40000",
+              borderColor: "#b40000",
+              closeIconColor: "#ffffff",,
+              messageFontColor: "#ffffff",
+              timeBarColor: "#650000",
+              titleFontColor: "#ffffff",
+            {{ codeInHtmlKeyClose }},
+            alertInformation: {{ codeInHtmlKeyOpen }}
+              backgroundColor: "#0099ff",
+              borderColor: "#0099ff",
+              closeIconColor: "#ffffff",
+              messageFontColor: "#ffffff",
+              timeBarColor: "#006cb5",
+              titleFontColor: "#ffffff",
+            {{ codeInHtmlKeyClose }},
+            alertSuccess: {{ codeInHtmlKeyOpen }}
+              backgroundColor: "#48b500",
+              borderColor: "#48b500",
+              closeIconColor: "#ffffff",
+              messageFontColor: "#ffffff",
+              timeBarColor: "#307700",
+              titleFontColor: "#ffffff",
+            {{ codeInHtmlKeyClose }},
+            alertWarning: {{ codeInHtmlKeyOpen }}
+              backgroundColor: "#d49b1e",
+              borderColor: "#d49b1e",
+              closeIconColor: "#ffffff",
+              messageFontColor: "#ffffff",
+              timeBarColor: "#a37410",
+              titleFontColor: "#ffffff",
+            {{ codeInHtmlKeyClose }},
+          {{ codeInHtmlKeyClose }},
+          useAlternativeTheme: false,
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+  </section>
+
+  <section id="section-customization">
+    <h2>Customization</h2>
+
+    <p>
+      You can customize the position, size and appearance of the alert.
+      Customization can be done for all screen types or different configurations
+      for small screens smaller than or equal to 959px, and for screens larger
+      than or equal to 960px. It is also possible to apply alternative
+      customization for each type of screen.
+    </p>
+
+    <p>
+      If you want to use a different customization for small screens, use the
+      property
+      <strong
+        >smallScreenConfig: {{ codeInHtmlKeyOpen }} ...
+        {{ codeInHtmlKeyClose }}</strong
+      >. Inside it, there will be the same format used for general definitions.
+    </p>
+
+    <p>
+      If you want to use a different customization in an alternative theme, set
+      true to property <strong>useAlternativeTheme</strong> and use the property
+      <strong
+        >anternativeTheme: {{ codeInHtmlKeyOpen }} ...
+        {{ codeInHtmlKeyClose }}</strong
+      >. Inside it, there will be the same format used for general definitions.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        interface INgxAlertMessageConfig {{ codeInHtmlKeyOpen }}
+          border: {{ codeInHtmlKeyOpen }}
+            radius?: string,
+            size?: string,
+            type?: string,
+          {{ codeInHtmlKeyClose }},
+          fixed?: boolean,
+          messageFontFamily?: string,
+          messageFontSize?: string,
+          position?: string,
+          showCloseIcon?: boolean,
+          size?: string,
+          timed?: boolean,
+          timedOut?: number,
+          titleFontFamily?: string,
+          titleFontSize?: string,
+          alertError: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            bordeColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }},
+          alertInformation: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }},
+          alertSuccess: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }},
+          alertWarning: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }},
+          smallScreenConfig: INgxAlertMessageConfig,
+          alternativeTheme: INgxAlertMessageConfig,
+          useAlternativeTheme?: boolean,
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+  </section>
+
+  <section id="section-position">
+    <h2>position</h2>
+
+    <p>
+      With the <strong class="italic">position</strong> property you can choose
+      which part of the screen the alert will be displayed on.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          position: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">position: </strong>You can use bottom, bottom-left,
+      bottom-right, top, top-left and top-right.
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Fixed</mat-label>
+          <mat-select [(ngModel)]="positionExample" required>
+            <mat-option value="bottom">bottom</mat-option>
+            <mat-option value="bottom-left">bottom-left</mat-option>
+            <mat-option value="bottom-right">bottom-right</mat-option>
+            <mat-option value="top">top</mat-option>
+            <mat-option value="top-left">top-left</mat-option>
+            <mat-option value="top-right">top-right</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              position: positionExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-size">
+    <h2>size</h2>
+
+    <p>
+      With the <strong class="italic">size</strong> property you can set the
+      alert size. If you use "fill", your alert will have no margins and will
+      occupy 100% of the screen width.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          size: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">size: </strong>You can use all CSS units,
+      <a
+        href="https://www.w3schools.com/cssref/css_units.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      , or use fill.
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Message Font Family</mat-label>
+          <input
+            matInput
+            [(ngModel)]="sizeExample"
+            placeholder="300px"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              size: sizeExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-border">
+    <h2>border</h2>
+
+    <p>
+      With the <strong class="italic">border</strong> property you can customize
+      the appearance of the alert border, these settings apply to all alert
+      types. The border color is set differently within the settings for each
+      alert type.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          border: {{ codeInHtmlKeyOpen }}
+            radius?: string,
+            size?: string,
+            type?: string,
+          {{ codeInHtmlKeyClose }}
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">radius: </strong>You can use all CSS units,
+      <a
+        href="https://www.w3schools.com/cssref/css_units.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">size: </strong>You can use all CSS units,
+      <a
+        href="https://www.w3schools.com/cssref/css_units.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">type: </strong>You can use all CSS border style,
+      <a
+        href="https://www.w3schools.com/cssref/pr_border-style.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Radius</mat-label>
+          <input
+            matInput
+            [(ngModel)]="borderExampleRadius"
+            placeholder="5px"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Size</mat-label>
+          <input
+            matInput
+            [(ngModel)]="borderExampleSize"
+            placeholder="3px"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select [(ngModel)]="borderExampleType" required>
+            <mat-option value="dashed">dashed</mat-option>
+            <mat-option value="dotted">dotted</mat-option>
+            <mat-option value="double">double</mat-option>
+            <mat-option value="groove">groove</mat-option>
+            <mat-option value="hidden">hidden</mat-option>
+            <mat-option value="inset">inset</mat-option>
+            <mat-option value="none">none</mat-option>
+            <mat-option value="outset">outset</mat-option>
+            <mat-option value="ridge">ridge</mat-option>
+            <mat-option value="solid">solid</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              border: {
+                radius: borderExampleRadius,
+                size: borderExampleSize,
+                type: borderExampleType
+              },
+              alertInformation: { borderColor: '#ffffff' }
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-fixed">
+    <h2>fixed</h2>
+
+    <p>
+      With the <strong class="italic">fixed</strong> property you can keep a
+      fixed alert that cannot be closed.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          fixed: boolean,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p><strong class="italic">fixed: </strong>You can use false or true.</p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Fixed</mat-label>
+          <mat-select [(ngModel)]="fixedExample" required>
+            <mat-option value="false">false</mat-option>
+            <mat-option value="true">true</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              fixed: fixedExample === 'true' ? true : false
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-message-font-family">
+    <h2>messageFontFamily</h2>
+
+    <p>
+      With the <strong class="italic">messageFontFamily</strong> property you
+      can change the font family of the alert message.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          messageFontFamily: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">messageFontFamily: </strong>You can use all CSS
+      font families,
+      <a
+        href="https://www.w3schools.com/cssref/pr_font_font-family.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Message Font Family</mat-label>
+          <input
+            matInput
+            [(ngModel)]="messageFontFamilyExample"
+            placeholder="'Comic Sans MS', 'Comic Sans', cursive"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              messageFontFamily: messageFontFamilyExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-message-font-size">
+    <h2>messageFontSize</h2>
+
+    <p>
+      With the <strong class="italic">messageFontSize</strong> property you can
+      change the font size of the alert message.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          messageFontSize: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">messageFontFamily: </strong>You can use CSS font
+      sizes,
+      <a
+        href="https://www.w3schools.com/cssref/pr_font_font-size.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Message Font Size</mat-label>
+          <input
+            matInput
+            [(ngModel)]="messageFontSizeExample"
+            placeholder="20px"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              messageFontSize: messageFontSizeExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-show-close-icon">
+    <h2>showCloseItem</h2>
+
+    <p>
+      With the <strong class="italic">showCloseIcon</strong> property you can
+      show or not the icon to close the alert.
+    </p>
+
+    <p>
+      * If the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-fixed')"
+      >
+        fixed
+      </span>
+      property equals true, this property will be ignored.
+    </p>
+
+    <p>
+      ** If the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-timed')"
+      >
+        timed
+      </span>
+      property is equal to false, and this property is equal to false, the alert
+      will not be closed at any time.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          showCloseIcon: boolean,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">showCloseIcon: </strong>You can use false or true.
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Show Close Icon</mat-label>
+          <mat-select [(ngModel)]="showCloseIconExample" required>
+            <mat-option value="false">false</mat-option>
+            <mat-option value="true">true</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              showCloseIcon: showCloseIconExample === 'true' ? true : false
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-timed">
+    <h2>timed</h2>
+
+    <p>
+      With the <strong class="italic">timed</strong> property you can define
+      whether the alert will be timed, that is, it will close automatically
+      after a while.
+    </p>
+
+    <p>
+      * If the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-fixed')"
+      >
+        fixed
+      </span>
+      property equals true, this property will be ignored.
+    </p>
+
+    <p>
+      ** If you set this property to false, the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-timed-out')"
+      >
+        timedOut
+      </span>
+      property will be ignored
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          timed: boolean,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p><strong class="italic">timed: </strong>You can use false or true.</p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Timed</mat-label>
+          <mat-select [(ngModel)]="timedExample" required>
+            <mat-option value="false">false</mat-option>
+            <mat-option value="true">true</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              timed: timedExample === 'true' ? true : false
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-timed-out">
+    <h2>timedOut</h2>
+
+    <p>
+      With the <strong class="italic">timedOut</strong> property you can set the
+      display time for an alert, the time is set in milliseconds (1000ms = 1s).
+    </p>
+
+    <p>
+      * If the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-fixed')"
+      >
+        fixed
+      </span>
+      property equals true, this property will be ignored.
+    </p>
+
+    <p>
+      ** If the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-timed')"
+      >
+        timed
+      </span>
+      property equals false, this property will be ignored.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          timedOut: number,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">timedOut: </strong>You can use numbers. The value
+      is in milliseconds
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Timed</mat-label>
+          <input
+            matInput
+            [(ngModel)]="timedOutExample"
+            min="1000"
+            placeholder="Lorem ipsum, dolor..."
+            step="1000"
+            required
+            type="number"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', null, {
+              timedOut: timedOutExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-title-font-family">
+    <h2>titleFontFamily</h2>
+
+    <p>
+      With the <strong class="italic">titleFontFamily</strong> property you can
+      change the font family of the alert message.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          titleFontFamily: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">titleFontFamily: </strong>You can use all CSS font
+      families,
+      <a
+        href="https://www.w3schools.com/cssref/pr_font_font-family.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Title Font Family</mat-label>
+          <input
+            matInput
+            [(ngModel)]="titleFontFamilyExample"
+            placeholder="'Comic Sans MS', 'Comic Sans', cursive"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', 'Loren', {
+              titleFontFamily: titleFontFamilyExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-title-font-size">
+    <h2>titleFontSize</h2>
+
+    <p>
+      With the <strong class="italic">titleFontFamily</strong> property you can
+      change the font size of the alert message.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          titleFontFamily: string,
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">titleFontFamily: </strong>You can use CSS font
+      sizes,
+      <a
+        href="https://www.w3schools.com/cssref/pr_font_font-size.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="row"
+      pbFxLayout.xs="column"
+      pbFxLayout.sm="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div>
+        <mat-form-field>
+          <mat-label>Title Font Size</mat-label>
+          <input
+            matInput
+            [(ngModel)]="titleFontSizeExample"
+            placeholder="20px"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          [class.margin-top-10]="!isSmallScreen"
+          color="primary"
+          mat-flat-button
+          (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', 'Lorem', {
+              titleFontSize: titleFontSizeExample
+            })
+          "
+        >
+          Go it!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-alert-error">
+    <h2>alertError</h2>
+
+    <p>
+      With the <strong class="italic">alertError</strong> property you can set
+      error alert colors.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          alertError: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }}
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">backgroundColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">borderColor: </strong>You can use all CSS border
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_border-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">closeIconColor: </strong>You can use all CSS color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">messageFontColor: </strong>You can use all CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">timeBarColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">titleFontColor: </strong>You can use same CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div
+        pbFxLayout="row"
+        pbFxLayout.xs="column"
+        pbFxLayout.sm="column"
+        pbFxLayoutAlign="start start"
+        pbFxLayoutAlign.xs="center start"
+        pbFxLayoutAlign.sm="center start"
+        pbFxGap="0px"
+        pbFxGap.xs="10px"
+        pbFxGap.sm="10px"
+        pbFxWrap="wrap"
+      >
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Background Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleBackgroundColor"
+              (click)="
+                showColorPicker('alertErrorExampleBackgroundColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleBackgroundColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleBackgroundColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Border Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleBorderColor"
+              (click)="showColorPicker('alertErrorExampleBorderColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleBorderColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleBorderColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Close Icon Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleCloseIconColor"
+              (click)="showColorPicker('alertErrorExampleCloseIconColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleCloseIconColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleCloseIconColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Message Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleMessageFontColor"
+              (click)="
+                showColorPicker('alertErrorExampleMessageFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleMessageFontColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleMessageFontColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Time Bar Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleTimeBarColor"
+              (click)="showColorPicker('alertErrorExampleTimeBarColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleTimeBarColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleTimeBarColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Title Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertErrorExampleTitleFontColor"
+              (click)="showColorPicker('alertErrorExampleTitleFontColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertErrorExampleTitleFontColorPicker"
+            type="color"
+            [(ngModel)]="alertErrorExampleTitleFontColor"
+          />
+        </div>
+
+        <div>
+          <button
+            [class.margin-top-10]="!isSmallScreen"
+            color="primary"
+            mat-flat-button
+            (click)="
+            showAlert('error', 'Lorem ipsum, dolor...', 'Lorem', {
+              alertError: {
+                backgroundColor: alertErrorExampleBackgroundColor,
+                borderColor: alertErrorExampleBorderColor,
+                closeIconColor: alertErrorExampleCloseIconColor,
+                messageFontColor: alertErrorExampleMessageFontColor,
+                timeBarColor: alertErrorExampleTimeBarColor,
+                titleFontColor: alertErrorExampleTitleFontColor,
+              },
+            })
+          "
+          >
+            Go it!
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-alert-information">
+    <h2>alertInformation</h2>
+
+    <p>
+      With the <strong class="italic">alertInformation</strong> property you can
+      set information alert colors.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          alertInformation: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }}
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">backgroundColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">borderColor: </strong>You can use all CSS border
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_border-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">closeIconColor: </strong>You can use all CSS color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">messageFontColor: </strong>You can use all CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">timeBarColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">titleFontColor: </strong>You can use same CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div
+        pbFxLayout="row"
+        pbFxLayout.xs="column"
+        pbFxLayout.sm="column"
+        pbFxLayoutAlign="start start"
+        pbFxLayoutAlign.xs="center start"
+        pbFxLayoutAlign.sm="center start"
+        pbFxGap="0px"
+        pbFxGap.xs="10px"
+        pbFxGap.sm="10px"
+        pbFxWrap="wrap"
+      >
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Background Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleBackgroundColor"
+              (click)="
+                showColorPicker('alertInformationExampleBackgroundColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleBackgroundColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleBackgroundColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Border Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleBorderColor"
+              (click)="
+                showColorPicker('alertInformationExampleBorderColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleBorderColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleBorderColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Close Icon Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleCloseIconColor"
+              (click)="
+                showColorPicker('alertInformationExampleCloseIconColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleCloseIconColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleCloseIconColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Message Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleMessageFontColor"
+              (click)="
+                showColorPicker('alertInformationExampleMessageFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleMessageFontColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleMessageFontColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Time Bar Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleTimeBarColor"
+              (click)="
+                showColorPicker('alertInformationExampleTimeBarColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleTimeBarColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleTimeBarColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Title Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertInformationExampleTitleFontColor"
+              (click)="
+                showColorPicker('alertInformationExampleTitleFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertInformationExampleTitleFontColorPicker"
+            type="color"
+            [(ngModel)]="alertInformationExampleTitleFontColor"
+          />
+        </div>
+
+        <div>
+          <button
+            [class.margin-top-10]="!isSmallScreen"
+            color="primary"
+            mat-flat-button
+            (click)="
+            showAlert('information', 'Lorem ipsum, dolor...', 'Lorem', {
+              alertInformation: {
+                backgroundColor: alertInformationExampleBackgroundColor,
+                borderColor: alertInformationExampleBorderColor,
+                closeIconColor: alertInformationExampleCloseIconColor,
+                messageFontColor: alertInformationExampleMessageFontColor,
+                timeBarColor: alertInformationExampleTimeBarColor,
+                titleFontColor: alertInformationExampleTitleFontColor,
+              },
+            })
+          "
+          >
+            Go it!
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-alert-success">
+    <h2>alertSuccess</h2>
+
+    <p>
+      With the <strong class="italic">alertSuccess</strong> property you can set
+      success alert colors.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          alertSuccess: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }}
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">backgroundColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">borderColor: </strong>You can use all CSS border
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_border-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">closeIconColor: </strong>You can use all CSS color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">messageFontColor: </strong>You can use all CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">timeBarColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">titleFontColor: </strong>You can use same CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div
+        pbFxLayout="row"
+        pbFxLayout.xs="column"
+        pbFxLayout.sm="column"
+        pbFxLayoutAlign="start start"
+        pbFxLayoutAlign.xs="center start"
+        pbFxLayoutAlign.sm="center start"
+        pbFxGap="0px"
+        pbFxGap.xs="10px"
+        pbFxGap.sm="10px"
+        pbFxWrap="wrap"
+      >
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Background Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleBackgroundColor"
+              (click)="
+                showColorPicker('alertSuccessExampleBackgroundColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleBackgroundColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleBackgroundColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Border Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleBorderColor"
+              (click)="showColorPicker('alertSuccessExampleBorderColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleBorderColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleBorderColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Close Icon Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleCloseIconColor"
+              (click)="
+                showColorPicker('alertSuccessExampleCloseIconColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleCloseIconColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleCloseIconColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Message Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleMessageFontColor"
+              (click)="
+                showColorPicker('alertSuccessExampleMessageFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleMessageFontColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleMessageFontColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Time Bar Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleTimeBarColor"
+              (click)="showColorPicker('alertSuccessExampleTimeBarColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleTimeBarColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleTimeBarColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Title Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertSuccessExampleTitleFontColor"
+              (click)="
+                showColorPicker('alertSuccessExampleTitleFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertSuccessExampleTitleFontColorPicker"
+            type="color"
+            [(ngModel)]="alertSuccessExampleTitleFontColor"
+          />
+        </div>
+
+        <div>
+          <button
+            [class.margin-top-10]="!isSmallScreen"
+            color="primary"
+            mat-flat-button
+            (click)="
+            showAlert('success', 'Lorem ipsum, dolor...', 'Lorem', {
+              alertSuccess: {
+                backgroundColor: alertSuccessExampleBackgroundColor,
+                borderColor: alertSuccessExampleBorderColor,
+                closeIconColor: alertSuccessExampleCloseIconColor,
+                messageFontColor: alertSuccessExampleMessageFontColor,
+                timeBarColor: alertSuccessExampleTimeBarColor,
+                titleFontColor: alertSuccessExampleTitleFontColor,
+              },
+            })
+          "
+          >
+            Go it!
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-alert-warning">
+    <h2>alertWarning</h2>
+
+    <p>
+      With the <strong class="italic">alertWarning</strong> property you can set
+      warning alert colors.
+    </p>
+
+    <div class="code margin-bottom-20">
+      <pre>
+        {{ codeInHtmlKeyOpen }}
+          '''
+          alertWarning: {{ codeInHtmlKeyOpen }}
+            backgroundColor?: string,
+            borderColor?: string,
+            closeIconColor?: string,
+            messageFontColor?: string,
+            timeBarColor?: string,
+            titleFontColor?: string,
+          {{ codeInHtmlKeyClose }}
+          '''
+        {{ codeInHtmlKeyClose }}
+      </pre>
+    </div>
+
+    <p>
+      <strong class="italic">backgroundColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">borderColor: </strong>You can use all CSS border
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_border-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">closeIconColor: </strong>You can use all CSS color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">messageFontColor: </strong>You can use all CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">timeBarColor: </strong>You can use all CSS
+      background color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_background-color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p>
+      <strong class="italic">titleFontColor: </strong>You can use same CSS
+      color,
+      <a
+        href="https://www.w3schools.com/cssref/pr_text_color.php"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        view more
+      </a>
+      .
+    </p>
+
+    <p class="margin-top-20 color-accent-light">
+      <strong>Try:</strong>
+    </p>
+
+    <div
+      pbFxLayout="column"
+      pbFxLayoutAlign="start start"
+      pbFxLayoutAlign.xs="stretch start"
+      pbFxLayoutAlign.sm="stretch start"
+      pbFxGap="20px"
+      pbFxGap.xs="5px"
+      pbFxGap.sm="5px"
+      pbFxWrap.md="wrap"
+      pbFxWrap.lg="wrap"
+      pbFxWrap.xl="wrap"
+    >
+      <div
+        pbFxLayout="row"
+        pbFxLayout.xs="column"
+        pbFxLayout.sm="column"
+        pbFxLayoutAlign="start start"
+        pbFxLayoutAlign.xs="center start"
+        pbFxLayoutAlign.sm="center start"
+        pbFxGap="0px"
+        pbFxGap.xs="10px"
+        pbFxGap.sm="10px"
+        pbFxWrap="wrap"
+      >
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Background Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleBackgroundColor"
+              (click)="
+                showColorPicker('alertWarningExampleBackgroundColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleBackgroundColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleBackgroundColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Border Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleBorderColor"
+              (click)="showColorPicker('alertWarningExampleBorderColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleBorderColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleBorderColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Close Icon Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleCloseIconColor"
+              (click)="
+                showColorPicker('alertWarningExampleCloseIconColorrPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleCloseIconColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleCloseIconColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Message Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleMessageFontColor"
+              (click)="
+                showColorPicker('alertWarningExampleMessageFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleMessageFontColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleMessageFontColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Time Bar Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleTimeBarColor"
+              (click)="showColorPicker('alertWarningExampleTimeBarColorPicker')"
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleTimeBarColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleTimeBarColor"
+          />
+        </div>
+
+        <div pbFxLayout="row" pbFxLayoutAlign="center center" pbFxSize="200px">
+          <mat-form-field>
+            <mat-label>Title Font Color</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="alertWarningExampleTitleFontColor"
+              (click)="
+                showColorPicker('alertWarningExampleTitleFontColorPicker')
+              "
+            />
+          </mat-form-field>
+          <input
+            id="alertWarningExampleTitleFontColorPicker"
+            type="color"
+            [(ngModel)]="alertWarningExampleTitleFontColor"
+          />
+        </div>
+
+        <div>
+          <button
+            [class.margin-top-10]="!isSmallScreen"
+            color="primary"
+            mat-flat-button
+            (click)="
+            showAlert('warning', 'Lorem ipsum, dolor...', 'Lorem', {
+              alertWarning: {
+                backgroundColor: alertWarningExampleBackgroundColor,
+                borderColor: alertWarningExampleBorderColor,
+                closeIconColor: alertWarningExampleCloseIconColor,
+                messageFontColor: alertWarningExampleMessageFontColor,
+                timeBarColor: alertWarningExampleTimeBarColor,
+                titleFontColor: alertWarningExampleTitleFontColor,
+              },
+            })
+          "
+          >
+            Go it!
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-small-screen-config">
+    <h2>smallScreenConfig</h2>
+
+    <p>
+      Using ngx-alert-message allows you to use specific customization for small
+      screen devices (small or equal to 959px), such as smartphones. To do this,
+      simply apply the configuration within the
+      <strong>smallScreenConfig</strong> property
+    </p>
+
+    <p>
+      So you can have a default configuration for other screens and one for
+      small screens. See the example of this in the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-configuration-default')"
+      >
+        Default Values
+      </span>
+      section.
+    </p>
+
+    <p class="padding-bottom-50">
+      The <strong>smallScreenConfig</strong> format is the same as that used in
+      the default configuration, the interface is described in the
+      <span
+        class="color-accent-light pointer"
+        (click)="scroolToElement('section-customization')"
+      >
+        Customization
+      </span>
+      section.
+    </p>
+  </section>
+</div>
